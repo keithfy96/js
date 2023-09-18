@@ -38,3 +38,17 @@ const averageScore =
   }, 0) / students.length;
 
 console.log(averageScore);
+
+// survey
+const survey = students.reduce((acc, student) => {
+  const favSubject = student.favoriteSubject;
+  if (acc[favSubject]) {
+    acc[favSubject] += 1;
+  } else {
+    acc[favSubject] = 1;
+    console.log("second ran");
+  }
+  return acc;
+}, {});
+
+console.log(survey);
