@@ -1,54 +1,23 @@
-import { students } from "./data.js";
+// Select the element or group of elements the we want
+// Decide the effect we want to apply to the selection
 
-console.log("hello");
+// childNodes - returns all childNodes including whitespace which is treated as a text node
 
-console.log(students);
+// children
+// firstChild
+// lastChild
 
-// updated students
+const result = document.querySelector("#result");
+const allChildren = result.childNodes;
+// console.log(allChildren);
 
-const updatedStudents = students.map((currItem) => {
-  currItem.role = "student";
-  return currItem;
-});
+const children = result.children;
+console.log(children);
 
-console.log(updatedStudents);
+const showScore = (name, score) => {
+  console.log(`hello ${name}, your score is ${score}`);
+};
 
-// high scores
+const firstID = setInterval(showScore, 4000, "bob", 30);
 
-const highScores = updatedStudents.filter((currItem) => {
-  return currItem.score >= 80;
-});
-
-console.log(highScores);
-
-// specific id
-
-const specificId = updatedStudents.find((currItem) => {
-  return (currItem.id = 2);
-});
-
-console.log(specificId);
-
-// average score
-
-const averageScore =
-  students.reduce((acc, currItem) => {
-    acc += currItem.score;
-    return acc;
-  }, 0) / students.length;
-
-console.log(averageScore);
-
-// survey
-const survey = students.reduce((acc, student) => {
-  const favSubject = student.favoriteSubject;
-  if (acc[favSubject]) {
-    acc[favSubject] += 1;
-  } else {
-    acc[favSubject] = 1;
-    console.log("second ran");
-  }
-  return acc;
-}, {});
-
-console.log(survey);
+setTimeout(clearInterval, 12000, firstID);
