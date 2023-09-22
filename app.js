@@ -21,3 +21,18 @@ const showScore = (name, score) => {
 const firstID = setInterval(showScore, 4000, "bob", 30);
 
 setTimeout(clearInterval, 12000, firstID);
+
+function createPerson(firstName, lastName) {
+  return {
+    firstName,
+    lastName,
+  };
+}
+
+function Account(name, initialBalance) {
+  this.name = name;
+  this.balance = initialBalance;
+}
+
+const john = new Account("john", 200);
+const bob = new Account("bob", 0);

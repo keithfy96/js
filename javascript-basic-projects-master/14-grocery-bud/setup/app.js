@@ -18,6 +18,16 @@ form.addEventListener("submit", addItem);
 clearBtn.addEventListener("click", clearItems);
 // load items
 window.addEventListener("DOMContentLoaded", setupItems);
+
+container.addEventListener("click", (event) => {
+  const target = event.target.parentElement;
+  console.log(target.classList.contains("delete-btn"));
+  if (target.classList.contains("delete-btn")) {
+    deleteItem(target);
+  } else if (target.classList.contains("edit-btn")) {
+    editItem(target);
+  }
+});
 // ****** FUNCTIONS **********
 function addItem(event) {
   event.preventDefault();
@@ -76,7 +86,9 @@ function clearItems() {
 
 // delete function
 function deleteItem(event) {
-  const element = event.currentTarget.parentElement.parentElement;
+  console.log(event);
+  // const element = event.currentTarget.parentElement.parentElement;
+  const element = event.parentElement.parentElement;
   const id = element.dataset.id;
   list.removeChild(element);
   if (list.children.length === 0) {
@@ -90,9 +102,11 @@ function deleteItem(event) {
 
 // edit function
 function editItem(event) {
-  const element = event.currentTarget.parentElement.parentElement;
+  // const element = event.currentTarget.parentElement.parentElement;
+  const element = event.parentElement.parentElement;
   // set edit item
-  editElement = event.currentTarget.parentElement.previousElementSibling;
+  console.log(element);
+  editElement = event.parentElement.previousElementSibling;
   console.log(editElement);
   // set form value
   grocery.value = editElement.innerHTML;
@@ -176,11 +190,11 @@ const createListItem = (id, value) => {
       </button>
     </div>`;
   // edit function
-  const editBtn = element.querySelector(".edit-btn");
-  // delete function
-  const deleteBtn = element.querySelector(".delete-btn");
-  deleteBtn.addEventListener("click", deleteItem);
-  editBtn.addEventListener("click", editItem);
+  // const editBtn = element.querySelector(".edit-btn");
+  // // delete function
+  // const deleteBtn = element.querySelector(".delete-btn");
+  // deleteBtn.addEventListener("click", deleteItem);
+  // editBtn.addEventListener("click", editItem);
   // append child
   list.appendChild(element);
 };
