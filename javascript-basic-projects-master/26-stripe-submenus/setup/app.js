@@ -1,0 +1,35 @@
+import sublinks from "./data.js";
+
+const toggleBtn = document.querySelector(".toggle-btn");
+const closeBtn = document.querySelector(".close-btn");
+const sidebarWrapper = document.querySelector(".sidebar-wrapper");
+const sidebar = document.querySelector(".sidebar-links");
+const linkBtn = [...document.querySelectorAll(".link-btn")];
+const submenu = document.querySelector(".submenu");
+const hero = document.querySelector(".hero");
+const nav = document.querySelector(".nav");
+
+// hide/show sidebar
+toggleBtn.addEventListener("click", () => {
+  sidebarWrapper.add("show");
+});
+closeBtn.addEventListener("click", () => {
+  sidebarWrapper.remove("show");
+  console.log("clicked");
+});
+
+// set sidebar
+sidebar.innerHTML = sublinks
+  .map((item) => {
+    const { links, page } = item;
+    return `<article><h4>${page}</h4>
+  <div class="sidebar-sublinks">
+  ${links
+    .map((link) => {
+      return `<a href="${link.url}"><i class="${link.icon}"></i>${link.label}</a>`;
+    })
+    .join("")}
+  </div>
+  </article>`;
+  })
+  .join("");
